@@ -10,25 +10,35 @@ public class TankController : MonoBehaviour
 
     // Character Attributes
     [Header("Character Attributes")]
-    [SerializeField] private float movementSpeed = 6;
-    [SerializeField] private int life = 1;
+    [SerializeField] private float MovementSpeed = 6;
+    [SerializeField] private float ChassisRotationSpeed = 16;
+    [SerializeField] private float TurretRotationSpeed = 25;
+    [SerializeField] private int Life = 1;
 
-    //Components
-    private Rigidbody Rb;
+    //TankComponents
+    [SerializeField] private Transform TankChassis;
+    [SerializeField] private Transform TankTurret;
 
     //Movement variables
-    private Vector3 movement = Vector3.zero;
+    private float Movement = 0;
+    private float ChassisRotation = 0;
+    private float TurretRotation = 0;
 
     private void Awake()
     {
         InputMapping = new TankControls();
-        Rb = GetComponent<Rigidbody>();
     }
 
     void Start()
     {
         InputMapping.TankInput.Move.performed += OnMove;
         InputMapping.TankInput.Move.canceled += OnMove;
+
+        InputMapping.TankInput.Rotate.performed += OnRotateChassis;
+        InputMapping.TankInput.Rotate.canceled += OnRotateChassis;
+
+        InputMapping.TankInput.RotateCannon.performed += OnRotateTurret;
+        InputMapping.TankInput.RotateCannon.canceled += OnRotateTurret;
     }
 
     private void OnEnable()
@@ -43,20 +53,28 @@ public class TankController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Rb.MovePosition(Rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+        transform.Translate(0, 0, Movement);
+        transform.Rotate(0, ChassisRotation, 0);
+
+        TankTurret.Rotate(0, TurretRotation, 0);
     }
 
     #region TankActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        //if (action == Action.PLANTING && context.phase != InputActionPhase.Started) return;
-        Vector2 inputVector = context.ReadValue<Vector2>();
-        movement = new Vector3(inputVector.x, 0, inputVector.y);
+        Movement = context.ReadValue<float>() * MovementSpeed * Time.fixedDeltaTime;
+    }
 
-        if (movement.magnitude <= 0.5f)
-            movement = Vector3.zero;
+    public void OnRotateChassis(InputAction.CallbackContext context)
+    {
+        ChassisRotation = context.ReadValue<float>() * ChassisRotationSpeed * Time.fixedDeltaTime;
+        TurretRotation = 0;
+    }
 
+    public void OnRotateTurret(InputAction.CallbackContext context)
+    {
+        TurretRotation = context.ReadValue<float>() * TurretRotationSpeed * Time.fixedDeltaTime;
     }
 
     #endregion
