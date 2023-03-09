@@ -16,12 +16,11 @@ public class TankController : MonoBehaviour
     [SerializeField] private int Life = 1;
 
     //TankComponents
-    [SerializeField] private Transform TankChassis;
     [SerializeField] private Transform TankTurret;
 
     //Movement variables
     private float Movement = 0;
-    private float ChassisRotation = 0;
+    private float TankRotation = 0;
     private float TurretRotation = 0;
 
     private void Awake()
@@ -34,8 +33,8 @@ public class TankController : MonoBehaviour
         InputMapping.TankInput.Move.performed += OnMove;
         InputMapping.TankInput.Move.canceled += OnMove;
 
-        InputMapping.TankInput.Rotate.performed += OnRotateChassis;
-        InputMapping.TankInput.Rotate.canceled += OnRotateChassis;
+        InputMapping.TankInput.Rotate.performed += OnRotateTank;
+        InputMapping.TankInput.Rotate.canceled += OnRotateTank;
 
         InputMapping.TankInput.RotateCannon.performed += OnRotateTurret;
         InputMapping.TankInput.RotateCannon.canceled += OnRotateTurret;
@@ -54,7 +53,7 @@ public class TankController : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(0, 0, Movement);
-        transform.Rotate(0, ChassisRotation, 0);
+        transform.Rotate(0, TankRotation, 0);
 
         TankTurret.Rotate(0, TurretRotation, 0);
     }
@@ -66,9 +65,9 @@ public class TankController : MonoBehaviour
         Movement = context.ReadValue<float>() * MovementSpeed * Time.fixedDeltaTime;
     }
 
-    public void OnRotateChassis(InputAction.CallbackContext context)
+    public void OnRotateTank(InputAction.CallbackContext context)
     {
-        ChassisRotation = context.ReadValue<float>() * ChassisRotationSpeed * Time.fixedDeltaTime;
+        TankRotation = context.ReadValue<float>() * ChassisRotationSpeed * Time.fixedDeltaTime;
         TurretRotation = 0;
     }
 
