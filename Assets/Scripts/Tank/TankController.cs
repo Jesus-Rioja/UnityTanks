@@ -13,7 +13,6 @@ public class TankController : MonoBehaviour
     [SerializeField] private float MovementSpeed = 6;
     [SerializeField] private float ChassisRotationSpeed = 16;
     [SerializeField] private float TurretRotationSpeed = 25;
-    [SerializeField] private int Life = 1;
 
     //TankComponents
     [SerializeField] private Transform TankTurret;
@@ -23,9 +22,13 @@ public class TankController : MonoBehaviour
     private float TankRotation = 0;
     private float TurretRotation = 0;
 
+    //Weapon manager
+    private WeaponHandler WH;
+
     private void Awake()
     {
         InputMapping = new TankControls();
+        WH = GetComponentInChildren<WeaponHandler>();
     }
 
     void Start()
@@ -38,6 +41,8 @@ public class TankController : MonoBehaviour
 
         InputMapping.TankInput.RotateCannon.performed += OnRotateTurret;
         InputMapping.TankInput.RotateCannon.canceled += OnRotateTurret;
+
+        InputMapping.TankInput.Attack.performed += OnAttack;
     }
 
     private void OnEnable()
@@ -74,6 +79,11 @@ public class TankController : MonoBehaviour
     public void OnRotateTurret(InputAction.CallbackContext context)
     {
         TurretRotation = context.ReadValue<float>() * TurretRotationSpeed * Time.fixedDeltaTime;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        WH.UseWeapon();
     }
 
     #endregion
