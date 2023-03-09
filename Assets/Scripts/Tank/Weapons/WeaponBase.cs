@@ -23,14 +23,4 @@ public class WeaponBase : MonoBehaviour
     {
         
     }
-
-    public virtual void StartShooting()
-    {
-
-    }
-
-    public virtual void StopShooting()
-    {
-
-    }
 }

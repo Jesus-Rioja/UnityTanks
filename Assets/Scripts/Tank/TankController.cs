@@ -10,8 +10,8 @@ public class TankController : MonoBehaviour
 
     // Character Attributes
     [Header("Character Attributes")]
-    [SerializeField] private float MovementSpeed = 6;
-    [SerializeField] private float ChassisRotationSpeed = 16;
+    [SerializeField] private float BaseMovementSpeed = 6;
+    [SerializeField] private float BaseChassisRotationSpeed = 16;
     [SerializeField] private float TurretRotationSpeed = 25;
 
     //TankComponents
@@ -19,8 +19,14 @@ public class TankController : MonoBehaviour
 
     //Movement variables
     private float Movement = 0;
+    private float MovementInputMultiplier = 0;
+    private float CurrentMovementSpeed = 0;
     private float TankRotation = 0;
+    private float TankRotationInputMultiplier = 0;
+    private float CurrentChassisRotationSpeed = 0;
     private float TurretRotation = 0;
+    private float TurboDuration = 10.0f;
+    private float TurboTimeRemaining = 0f;
 
     //Weapon manager
     private WeaponHandler WH;
@@ -29,6 +35,8 @@ public class TankController : MonoBehaviour
     {
         InputMapping = new TankControls();
         WH = GetComponentInChildren<WeaponHandler>();
+        CurrentMovementSpeed = BaseMovementSpeed;
+        CurrentChassisRotationSpeed = BaseChassisRotationSpeed;
     }
 
     void Start()
@@ -62,19 +70,45 @@ public class TankController : MonoBehaviour
         transform.Rotate(0, TankRotation, 0);
 
         TankTurret.Rotate(0, TurretRotation, 0);
+
+        if(TurboTimeRemaining > 0) //On turbo
+        {
+            TurboTimeRemaining -= Time.fixedDeltaTime;
+        }
+        else if(BaseMovementSpeed != CurrentMovementSpeed) //If turbo ended, reset movement speed values
+        {
+            CurrentMovementSpeed = BaseMovementSpeed;
+            CalculateNewMovement();
+
+            CurrentChassisRotationSpeed = BaseChassisRotationSpeed;
+            CalculateNewTankRotation();
+        }
+
     }
 
     #region TankActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Movement = context.ReadValue<float>() * MovementSpeed * Time.fixedDeltaTime;
+        MovementInputMultiplier = context.ReadValue<float>();
+        CalculateNewMovement();
+    }
+
+    private void CalculateNewMovement()
+    {
+        Movement = MovementInputMultiplier * CurrentMovementSpeed * Time.fixedDeltaTime;
     }
 
     public void OnRotateTank(InputAction.CallbackContext context)
     {
-        TankRotation = context.ReadValue<float>() * ChassisRotationSpeed * Time.fixedDeltaTime;
-        TurretRotation = 0;
+        TankRotationInputMultiplier = context.ReadValue<float>();
+        CalculateNewTankRotation();
+        //TurretRotation = 0;
+    }
+
+    private void CalculateNewTankRotation()
+    {
+        TankRotation = TankRotationInputMultiplier * CurrentChassisRotationSpeed * Time.fixedDeltaTime;
     }
 
     public void OnRotateTurret(InputAction.CallbackContext context)
@@ -85,6 +119,32 @@ public class TankController : MonoBehaviour
     public void OnAttack(InputAction.CallbackContext context)
     {
         WH.UseWeapon();
+    }
+
+    #endregion
+
+    #region TriggerEffects
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Turbo")) //Check effector
+        {
+            ApplyTurbo();
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void ApplyTurbo()
+    {
+        if(TurboTimeRemaining <= 0) //Increase the movement speed of the tank
+        {
+            CurrentMovementSpeed = BaseMovementSpeed * 2;
+            CalculateNewMovement();
+
+            CurrentChassisRotationSpeed = BaseChassisRotationSpeed * 2;
+            CalculateNewTankRotation();
+        }
+        TurboTimeRemaining = TurboDuration;
     }
 
     #endregion

@@ -7,7 +7,7 @@ public class OnCollisionExplode : MonoBehaviour
     [SerializeField] GameObject[] OnExplosionPrefabs;
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
         foreach (GameObject prefab in OnExplosionPrefabs)
         {
@@ -15,4 +15,13 @@ public class OnCollisionExplode : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+    private void OnDisable()
+    {
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+    }
 }

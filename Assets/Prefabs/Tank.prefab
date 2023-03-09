@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 2178012769904732828}
   - component: {fileID: 2178012769904732829}
   - component: {fileID: 2178012769904732818}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &2178012769904732829
 CapsuleCollider:
@@ -453,9 +453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89503a67ef7681f4ab4170c06b254c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 6
-  ChassisRotationSpeed: 16
-  TurretRotationSpeed: 25
+  MovementSpeed: 12
+  ChassisRotationSpeed: 32
+  TurretRotationSpeed: 50
   TankTurret: {fileID: 2178012769904244603}
 --- !u!1 &2178012769904732821
 GameObject:
