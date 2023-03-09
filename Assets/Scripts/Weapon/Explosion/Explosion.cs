@@ -16,12 +16,12 @@ public class Explosion : MonoBehaviour
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
-        foreach (Collider c in colliders)
+        foreach (Collider c in colliders) //Finds for hittable targets
         {
             TargetWithLife HittedTarget = c.GetComponent<TargetWithLife>();
-            HittedTarget?.LoseLife();
+            HittedTarget?.LoseLife(); //If hittable, damage it
         }
 
-        Instantiate(prefabVisualExplosion, transform.position, Quaternion.identity);
+        Instantiate(prefabVisualExplosion, transform.position, Quaternion.identity); //Instantiate visuals
     }
 }

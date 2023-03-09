@@ -5,11 +5,11 @@ using UnityEngine;
 public class TargetWithLife : MonoBehaviour
 {
     [Header("Life info")]
-    [SerializeField] float MaxLife = 1.0f;
+    [SerializeField] const float MaxLife = 1.0f;
     [SerializeField] float OnHitLifeLost = 1.0f;
 
     bool bInvulnerable = false;
-    float CurrentLife;
+    protected float CurrentLife;
 
 
     void Start()
@@ -17,7 +17,7 @@ public class TargetWithLife : MonoBehaviour
         CurrentLife = MaxLife;
     }
 
-    public void LoseLife()
+    public virtual void LoseLife()
     {
         if(!bInvulnerable)
         {
@@ -26,7 +26,7 @@ public class TargetWithLife : MonoBehaviour
         }
     }
 
-    private void CheckStillAlive()
+    protected virtual void CheckStillAlive()
     {
         if(CurrentLife <= 0)
         {

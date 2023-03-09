@@ -33,6 +33,7 @@ public class TankController : MonoBehaviour
 
     void Start()
     {
+        //Binds every input action to a function
         InputMapping.TankInput.Move.performed += OnMove;
         InputMapping.TankInput.Move.canceled += OnMove;
 

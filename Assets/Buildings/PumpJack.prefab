@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6503918969141625314}
   - component: {fileID: 6503918969136320722}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pumpjack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6503918969141625340}
   - component: {fileID: 6503918969132051986}
   - component: {fileID: 6503918969132051987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PumpJack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

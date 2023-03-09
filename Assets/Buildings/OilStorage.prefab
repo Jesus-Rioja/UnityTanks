@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5248773051354216746}
   - component: {fileID: 5248773051347080234}
   - component: {fileID: 5248773051347080229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OilStorage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

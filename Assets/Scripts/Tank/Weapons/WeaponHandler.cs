@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
-    private WeaponBase[] Weapons;
+    private WeaponBase[] Weapons; //Array of available weapons. when modifier taken, current weapon may change to another type
     private WeaponBase CurrentWeapon;
     private bool bCanShoot = false;
 
@@ -28,7 +28,7 @@ public class WeaponHandler : MonoBehaviour
     {
         foreach(WeaponBase weapon in Weapons)
         {
-            if(weapon.GetUseType() == WeaponBase.WeaponUseType.TurretTank)
+            if(weapon.GetUseType() == WeaponBase.WeaponUseType.TurretTank) //Finds for the initial weapon
             {
                 weapon.enabled = true;
                 CurrentWeapon = weapon;
@@ -43,7 +43,7 @@ public class WeaponHandler : MonoBehaviour
     float TimeToAllowShoot = 2.0f;
     private void Update()
     {
-        if (Time.time > TimeToAllowShoot)
+        if (Time.time > TimeToAllowShoot) //When timer ends, allow to shoot again
         {
             bCanShoot = true; 
         }
@@ -56,7 +56,7 @@ public class WeaponHandler : MonoBehaviour
             ShootSound.Play();
             CurrentWeapon.Shot();
             CurrentAmmo--;
-            TimeToAllowShoot = Time.time + 1.0f / ShotsPerSecond;
+            TimeToAllowShoot = Time.time + 1.0f / ShotsPerSecond; //Reset timer
             bCanShoot = false;
         }
         else

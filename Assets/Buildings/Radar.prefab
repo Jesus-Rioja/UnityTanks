@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5578986768714175891}
   - component: {fileID: 5578986768713209683}
   - component: {fileID: 5578986768713209676}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Radar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
