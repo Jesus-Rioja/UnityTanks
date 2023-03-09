@@ -14,12 +14,6 @@ public class SingleGamemode : MonoBehaviour
     private int CactusSpawned = 0;
     private float TimeToInvokeNewCactus;
 
-    void Start()
-    {
-        
-    }
-
-
     void Update()
     {
         if(CactusSpawned < 5)

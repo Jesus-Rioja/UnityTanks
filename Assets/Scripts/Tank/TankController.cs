@@ -130,15 +130,26 @@ public class TankController : MonoBehaviour
         if(other.CompareTag("Turbo")) //Check effector
         {
             ApplyTurbo();
-            Destroy(other.gameObject);
+
         }
+        else if(other.CompareTag("Ammo"))
+        {
+            GetComponentInChildren<WeaponHandler>().OnEffectorAddAmmo();
+        }
+        else
+        {
+            return;
+        }
+
+        Destroy(other.gameObject);
+        GameManager.Instance.GetComponent<EffectorsManager>().EnableTimerToSpawnNewEffector();
     }
 
     private void ApplyTurbo()
     {
         if(TurboTimeRemaining <= 0) //Increase the movement speed of the tank
         {
-            CurrentMovementSpeed = BaseMovementSpeed * 2;
+            CurrentMovementSpeed = BaseMovementSpeed * 1.5f;
             CalculateNewMovement();
 
             CurrentChassisRotationSpeed = BaseChassisRotationSpeed * 2;

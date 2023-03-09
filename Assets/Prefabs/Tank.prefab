@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 2178012769904732828}
   - component: {fileID: 2178012769904732829}
   - component: {fileID: 2178012769904732818}
+  - component: {fileID: 5169944392983896794}
   m_Layer: 7
   m_Name: Tank
   m_TagString: Player
@@ -453,10 +454,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89503a67ef7681f4ab4170c06b254c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 12
-  ChassisRotationSpeed: 32
-  TurretRotationSpeed: 50
+  BaseMovementSpeed: 10
+  BaseChassisRotationSpeed: 50
+  TurretRotationSpeed: 70
   TankTurret: {fileID: 2178012769904244603}
+--- !u!114 &5169944392983896794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178012769904732819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867adc00839f1a243b5a21e2ca216723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHitLifeLost: 1
 --- !u!1 &2178012769904732821
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,6 +858,7 @@ MonoBehaviour:
   ShotsPerSecond: 0.5
   CurrentAmmo: 10
   TotalAmmo: 15
+  OnPackAmmoToRecharge: 5
   ShootSound: {fileID: 1519571198}
   RechargingSound: {fileID: 1134886685}
 --- !u!1 &6968894084837363685

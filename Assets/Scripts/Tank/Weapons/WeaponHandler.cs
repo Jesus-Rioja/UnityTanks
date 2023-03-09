@@ -15,6 +15,9 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] int CurrentAmmo = 10;
     [SerializeField] int TotalAmmo = 15;
 
+    [Header("Ammo packs")]
+    [SerializeField] int OnPackAmmoToRecharge = 5;
+
     [Header("Audio clips")]
     [SerializeField] AudioSource ShootSound; //Sound played when turret shoots
     [SerializeField] AudioSource RechargingSound; //Sound played when turret cannot shoots
@@ -64,4 +67,20 @@ public class WeaponHandler : MonoBehaviour
             RechargingSound.Play();
         }
     }
+
+    #region TriggerEffects
+
+    public void OnEffectorAddAmmo() //Gives ammo when effector picked up
+    {
+        if (CurrentAmmo + OnPackAmmoToRecharge <= TotalAmmo) //New total ammo cannot be greater then max ammo
+        {
+            CurrentAmmo += OnPackAmmoToRecharge;
+        }
+        else
+        {
+            CurrentAmmo = TotalAmmo;
+        }
+    }
+
+    #endregion
 }
