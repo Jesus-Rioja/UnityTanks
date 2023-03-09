@@ -19,8 +19,11 @@ public class TargetWithLife : MonoBehaviour
 
     public void LoseLife()
     {
-        CurrentLife -= OnHitLifeLost;
-        CheckStillAlive();
+        if(!bInvulnerable)
+        {
+            CurrentLife -= OnHitLifeLost;
+            CheckStillAlive();
+        }
     }
 
     private void CheckStillAlive()

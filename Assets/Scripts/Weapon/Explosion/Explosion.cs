@@ -21,7 +21,7 @@ public class Explosion : MonoBehaviour
             TargetWithLife HittedTarget = c.GetComponent<TargetWithLife>();
             HittedTarget?.LoseLife();
         }
-        //AudioSource.PlayClipAtPoint(explosionAudioClip, transform.position);
+
         Instantiate(prefabVisualExplosion, transform.position, Quaternion.identity);
     }
 }
