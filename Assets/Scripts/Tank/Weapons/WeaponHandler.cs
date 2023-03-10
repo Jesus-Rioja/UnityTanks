@@ -64,7 +64,10 @@ public class WeaponHandler : MonoBehaviour
         }
         else
         {
-            RechargingSound.Play();
+            if(!RechargingSound.isPlaying)
+            {
+                RechargingSound.Play();
+            }
         }
     }
 

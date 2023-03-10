@@ -8,6 +8,9 @@ public class TargetTank : TargetWithLife
     [Header("Tank visuals")]
     [SerializeField] GameObject TankShield;
 
+    [Header("Tank destroyed sound")]
+    [SerializeField] AudioSource TankExplosionSound;
+
     [HideInInspector] public UnityEvent<int> OnTankDeath;
     [HideInInspector] public int PlayerIndex = 0;
 
@@ -30,6 +33,11 @@ public class TargetTank : TargetWithLife
     {
         if (CurrentLife <= 0)
         {
+            if(!TankExplosionSound.isPlaying)
+            {
+                TankExplosionSound.Play();
+            }
+
             OnTankDeath.Invoke(PlayerIndex);
             FullRegenerateLife();
             StartCoroutine(EnableInvulnerabilityOnRespawn()); //Tank is 3 secs invulnerable after respawn

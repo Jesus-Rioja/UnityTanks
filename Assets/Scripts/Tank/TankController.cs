@@ -15,6 +15,11 @@ public class TankController : MonoBehaviour
     [SerializeField] private float BaseChassisRotationSpeed = 16;
     [SerializeField] private float TurretRotationSpeed = 25;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource IdleSound;
+    [SerializeField] private AudioSource MovementSound;
+    [SerializeField] private AudioSource PickingAmmoSound;
+
     //TankComponents
     [SerializeField] private Transform TankTurret;
 
@@ -43,17 +48,7 @@ public class TankController : MonoBehaviour
 
     void Start()
     {
-        //Binds every input action to a function
-        /*InputMapping.TankInput.Move.performed += OnMove;
-        InputMapping.TankInput.Move.canceled += OnMove;
-
-        InputMapping.TankInput.Rotate.performed += OnRotate;
-        InputMapping.TankInput.Rotate.canceled += OnRotate;
-
-        InputMapping.TankInput.RotateCannon.performed += OnRotateCannon;
-        InputMapping.TankInput.RotateCannon.canceled += OnRotateCannon;
-
-        InputMapping.TankInput.Attack.performed += OnAttack;*/
+        IdleSound.Play();
     }
 
     private void OnEnable()
@@ -92,8 +87,20 @@ public class TankController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if(context.started)
+        {
+            IdleSound.Stop();
+            MovementSound.Play();
+        }
+        else if(context.canceled)
+        {
+            MovementSound.Stop();
+            IdleSound.Play();
+        }
+
         MovementInputMultiplier = context.ReadValue<float>();
         CalculateNewMovement();
+
     }
 
     private void CalculateNewMovement()
@@ -120,7 +127,10 @@ public class TankController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        WH.UseWeapon();
+        if(context.performed)
+        {
+            WH.UseWeapon();
+        }
     }
 
     #endregion
@@ -136,6 +146,7 @@ public class TankController : MonoBehaviour
         }
         else if(other.CompareTag("Ammo"))
         {
+            PickingAmmoSound.Play();
             GetComponentInChildren<WeaponHandler>().OnEffectorAddAmmo();
         }
         else

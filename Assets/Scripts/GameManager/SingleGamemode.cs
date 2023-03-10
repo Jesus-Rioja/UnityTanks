@@ -46,7 +46,7 @@ public class SingleGamemode : MonoBehaviour
 
         OnCactusDestroyed.Invoke(CactusDestroyed);
 
-        if(CactusDestroyed >= 4) //Ends game when 20 cactus destroyed
+        if(CactusDestroyed >= 20) //Ends game when 20 cactus destroyed
         {
             GameFinished.Invoke();
         }
