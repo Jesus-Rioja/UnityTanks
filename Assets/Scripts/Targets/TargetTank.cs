@@ -32,7 +32,7 @@ public class TargetTank : TargetWithLife
         {
             OnTankDeath.Invoke(PlayerIndex);
             FullRegenerateLife();
-            StartCoroutine(EnableInvulnerabilityOnRespawn());
+            StartCoroutine(EnableInvulnerabilityOnRespawn()); //Tank is 3 secs invulnerable after respawn
         }
     }
 

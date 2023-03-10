@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void SetUpGamemode()
+    private void SetUpGamemode() //Check the game mode -> Single or 2 players
     {
         GameObject temp = Instantiate(Tank, Vector3.zero, Quaternion.identity);
         temp.transform.position = TankSpawnPoints[0].position;
