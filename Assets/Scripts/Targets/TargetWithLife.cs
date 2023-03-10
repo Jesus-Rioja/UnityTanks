@@ -8,7 +8,7 @@ public class TargetWithLife : MonoBehaviour
     [SerializeField] const float MaxLife = 1.0f;
     [SerializeField] float OnHitLifeLost = 1.0f;
 
-    bool bInvulnerable = false;
+    protected bool bInvulnerable = false;
     protected float CurrentLife;
 
 
@@ -32,5 +32,10 @@ public class TargetWithLife : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    protected void FullRegenerateLife()
+    {
+        CurrentLife = MaxLife;
     }
 }

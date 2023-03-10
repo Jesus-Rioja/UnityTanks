@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     public float ZoomOffset = 5.0f;
     public float ZoomLimiter = 10.0f;
 
-    public Transform[] Targets;
+    private List<Transform> Targets = new List<Transform>();
     private Vector3 Velocity;
     private float ZoomSpeed;
     private Camera Cam;
@@ -23,8 +23,16 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
-        Zoom();
+        if (Targets.Count <= 0)
+        {
+            FindTargets();
+        }
+        else
+        {
+            Move();
+            Zoom();
+        }
+
     }
 
     void Move()
@@ -41,21 +49,21 @@ public class CameraFollow : MonoBehaviour
         Cam.orthographicSize = Mathf.SmoothDamp(Cam.orthographicSize, requiredSize, ref ZoomSpeed, SmoothTime);
     }
 
-    /*void GetTargets()
+    void FindTargets()
      {
-        //Targets = GameObject.FindGameObjectsWithTag("Player");
-        int i = 0;
-        foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Player"))
+        if (GameManager.Instance.CurrentPlayers.Count > 0)
         {
-            Targets[i] = GO;
-            i++;
+            foreach (GameObject gameObject in GameManager.Instance.CurrentPlayers)
+            {
+                Targets.Add(gameObject.transform);
+            }
         }
-     }*/
+     }
 
    void GetCenterPoint()
     {
         Bounds bounds = new Bounds(Targets[0].transform.position, Vector3.zero);
-        for(int i = 0; i < Targets.Length; i++)
+        for(int i = 0; i < Targets.Count; i++)
             bounds.Encapsulate(Targets[i].transform.position);
 
         CentralPoint = bounds.center;
@@ -71,7 +79,7 @@ public class CameraFollow : MonoBehaviour
 
         float size = 0f;
 
-        for (int i = 0; i < Targets.Length; i++)
+        for (int i = 0; i < Targets.Count; i++)
         {
             if (!Targets[i].gameObject.activeSelf)
                 continue;

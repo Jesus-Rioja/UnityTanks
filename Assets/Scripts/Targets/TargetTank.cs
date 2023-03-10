@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TargetTank : TargetWithLife
 {
+    [Header("Tank visuals")]
     [SerializeField] GameObject TankShield;
+
+    [HideInInspector] public UnityEvent<int> OnTankDeath;
+    [HideInInspector] public int PlayerIndex = 0;
 
     private void Awake()
     {
@@ -18,6 +23,16 @@ public class TargetTank : TargetWithLife
         if(CurrentLife <= 1)
         {
             TankShield.SetActive(false);
+        }
+    }
+
+    protected override void CheckStillAlive()
+    {
+        if (CurrentLife <= 0)
+        {
+            OnTankDeath.Invoke(PlayerIndex);
+            FullRegenerateLife();
+            StartCoroutine(EnableInvulnerabilityOnRespawn());
         }
     }
 
@@ -35,4 +50,12 @@ public class TargetTank : TargetWithLife
     }
 
     #endregion
+
+    IEnumerator EnableInvulnerabilityOnRespawn()
+    {
+        bInvulnerable = true;
+        yield return new WaitForSeconds(3.0f);
+        bInvulnerable = false;
+    }
+
 }
