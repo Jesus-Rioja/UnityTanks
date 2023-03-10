@@ -10,7 +10,9 @@ public class WinPanelEnabler : MonoBehaviour
     private void Start()
     {
         WinPanel.SetActive(false);
+
         GameManager.Instance.GetComponent<SingleGamemode>().GameFinished.AddListener(EnableWinPanel);
+
     }
 
     private void EnableWinPanel()

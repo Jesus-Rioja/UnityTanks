@@ -19,7 +19,7 @@ public class CactusDisplayerScript : MonoBehaviour
         DisplayDestroyedCactus(0);
     }
 
-    void DisplayDestroyedCactus(int CactusDestroyed)
+    void DisplayDestroyedCactus(int CactusDestroyed) //Update the cactus destroyed text
     {
         CactusDisplay.text = "" + CactusDestroyed;
     }

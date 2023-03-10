@@ -5,6 +5,9 @@ using TMPro;
 
 public class AmmoDisplayerScript : MonoBehaviour
 {
+    [Header("Player ID (0 or 1)")]
+    [SerializeField] int PlayerIndex = 0;
+
     TMP_Text AmmoDisplay;
     WeaponHandler PlayerWeapon = null;
 
@@ -22,13 +25,18 @@ public class AmmoDisplayerScript : MonoBehaviour
         }
         else
         {
-            FindPlayer();
+            FindPlayer(); //Find the weapond hanlder to check its bullets
         }
     }
 
     private void FindPlayer()
     {
-        GameObject player = GameManager.Instance.CurrentPlayers[0];
+        if(GameManager.Instance.CurrentPlayers.Count <= PlayerIndex)
+        {
+            return;
+        }
+
+        GameObject player = GameManager.Instance.CurrentPlayers[PlayerIndex];
 
         if (player)
         {

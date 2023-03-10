@@ -31,12 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GetComponent<MapGenerator>().GenerateMap();
-        SetUpGamemode();
-    }
-
-    void Update()
-    {
-        
+        SetUpGamemode(); //Initialize game and scripts
     }
 
     private void SetUpGamemode() //Check the game mode -> Single or 2 players
@@ -45,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         bool SingleGameModeSelected = (gameModeSelected == 1);
 
-        if (gameModeSelected < 1 || gameModeSelected > 2)
+        if (gameModeSelected < 1 || gameModeSelected > 2) //If there is no gamemode, return to menu
         {
             SceneManager.LoadScene("MainMenu");
         }
@@ -61,6 +56,7 @@ public class GameManager : MonoBehaviour
 
         BindEvents();
 
+        //Enables the Single or 2 Players gamemode script
         GetComponent<SingleGamemode>().enabled = SingleGameModeSelected ? true : false;
         GetComponent<TwoPlayersGamemode>().enabled = !SingleGameModeSelected ? true : false;
 
@@ -74,7 +70,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void RespawnTank(int PlayerIndex)
+    private void RespawnTank(int PlayerIndex) //Return tank to its spawn position
     {
         CurrentPlayers[PlayerIndex].transform.position = TankSpawnPoints[PlayerIndex].position;
     }
