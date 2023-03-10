@@ -161,7 +161,11 @@ public class TankController : MonoBehaviour
         else if(other.CompareTag("Ammo"))
         {
             PickingAmmoSound.Play();
-            GetComponentInChildren<WeaponHandler>().OnEffectorAddAmmo();
+            WH.OnEffectorAddAmmo();
+        }
+        else if(other.CompareTag("Multishot"))
+        {
+            WH.OnEffectorMultishotWeapon();
         }
         else
         {

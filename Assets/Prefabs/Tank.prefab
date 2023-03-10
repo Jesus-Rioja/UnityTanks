@@ -814,6 +814,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f6796748-0697-4265-923b-5725bbefcc9c
     m_ActionName: TankInput/Pause[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b56c1cdc-11dc-4e69-8f9e-8d293d4bb62a
+    m_ActionName: PlayerUI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 233f9593-6b83-44ca-b8fa-f04731ab624c
+    m_ActionName: PlayerUI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f35da6a-e43c-4fd4-b515-bf7eb2762068
+    m_ActionName: PlayerUI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dc435407-530c-4d37-91fc-c84fc0bd2ea7
+    m_ActionName: PlayerUI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5a13ccee-0c83-4090-aa6f-4094d157c5ed
+    m_ActionName: PlayerUI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 84fdde50-9c94-457c-ae36-346a603ad34c
+    m_ActionName: PlayerUI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ea952cf7-a8f5-4873-bbff-fc97bbd0baf6
+    m_ActionName: PlayerUI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ea971386-39c6-43b6-ab48-16fc44d230ea
+    m_ActionName: PlayerUI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aee8a095-7e36-48bd-a8b1-f42d3da88bba
+    m_ActionName: PlayerUI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 768c5210-a8da-463e-bf73-fb09dd6f17ac
+    m_ActionName: PlayerUI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cf5dd8ec-64ad-4920-aebf-ef0960a9b05f
+    m_ActionName: PlayerUI/Back[/Keyboard/escape,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: TankInput
@@ -1398,11 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2f251ef07b89e4ebbabe8d482b8dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bShootOnce: 0
-  bShootContinuously: 0
   bShotAllowed: 1
-  ProyectilPrefab: {fileID: 1420367799430483753, guid: ded498a57ce67814c8eeb89e21d5639b,
-    type: 3}
   ShootPoint: {fileID: 1086001872259486767}
   ForceOnShoot: 800
 --- !u!1 &6144448338686289190
@@ -1436,6 +1476,7 @@ Transform:
   m_Children:
   - {fileID: 1086001872259486767}
   - {fileID: 2139083725125757990}
+  - {fileID: 2162765460756242724}
   m_Father: {fileID: 2178012769904244603}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1616,3 +1657,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8452142078341957738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2162765460756242724}
+  - component: {fileID: 6690881874668411323}
+  m_Layer: 0
+  m_Name: WeaponMultishot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2162765460756242724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452142078341957738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8968674129683959932}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6690881874668411323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452142078341957738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb1f1dcaab40ed459823e10a7fb1ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bShotAllowed: 1
+  ShootPoint: {fileID: 1086001872259486767}
+  ForceOnShoot: 800
+  NumberOfProjectiles: 6

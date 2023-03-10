@@ -14,9 +14,7 @@ public class WeaponBase : MonoBehaviour
 
     public virtual WeaponUseType GetUseType() { return WeaponUseType.Undefined; }
 
-    public bool bShootOnce;
-    public bool bShootContinuously;
-    public bool bShotAllowed = true;
+    [HideInInspector] public bool bShotAllowed = true;
 
 
     public virtual void Shot()

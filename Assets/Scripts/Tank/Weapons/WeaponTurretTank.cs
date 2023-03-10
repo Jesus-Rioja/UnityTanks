@@ -5,9 +5,9 @@ using UnityEngine;
 public class WeaponTurretTank : WeaponBase
 {
     [Header("Proyectile data")]
-    [SerializeField] GameObject ProyectilPrefab;
     [SerializeField] Transform ShootPoint;
     [SerializeField] float ForceOnShoot = 100.0f;
+
 
     public override WeaponUseType GetUseType() { return WeaponUseType.TurretTank; }
 

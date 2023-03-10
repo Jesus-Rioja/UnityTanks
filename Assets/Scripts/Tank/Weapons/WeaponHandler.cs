@@ -7,6 +7,8 @@ public class WeaponHandler : MonoBehaviour
     private WeaponBase[] Weapons; //Array of available weapons. when modifier taken, current weapon may change to another type
     private WeaponBase CurrentWeapon;
     private bool bCanShoot = false;
+    private bool bWithModifier = false;
+    private float WeaponModifierDuration = 8.0f;
 
     //Shoot cadence
     [Header("Shoot cadence")]
@@ -50,6 +52,17 @@ public class WeaponHandler : MonoBehaviour
         {
             bCanShoot = true; 
         }
+
+        if(bWithModifier)
+        {
+            WeaponModifierDuration -= Time.deltaTime;
+
+            if(WeaponModifierDuration <= 0)
+            {
+                CurrentWeapon = Weapons[0];
+            }
+        }
+
     }
 
     public void UseWeapon() 
@@ -85,6 +98,13 @@ public class WeaponHandler : MonoBehaviour
         {
             CurrentAmmo = TotalAmmo;
         }
+    }
+
+    public void OnEffectorMultishotWeapon() //Gives ammo when effector picked up
+    {
+        bWithModifier = true;
+        WeaponModifierDuration = 8.0f;
+        CurrentWeapon = Weapons[1];
     }
 
     #endregion
