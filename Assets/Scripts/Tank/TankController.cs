@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
@@ -36,6 +37,10 @@ public class TankController : MonoBehaviour
 
     //Weapon manager
     private WeaponHandler WH;
+
+    //Event to trigger pause menu
+    [HideInInspector] public UnityEvent OnPauseMenu;
+    bool bIsOnPause = false;
 
     private void Awake()
     {
@@ -127,9 +132,18 @@ public class TankController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if(context.performed && !bIsOnPause)
         {
             WH.UseWeapon();
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bIsOnPause = !bIsOnPause;
+            OnPauseMenu.Invoke();
         }
     }
 

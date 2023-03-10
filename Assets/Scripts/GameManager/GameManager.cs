@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         foreach(GameObject gameObject in CurrentPlayers)
         {
             gameObject?.GetComponent<TargetTank>().OnTankDeath.AddListener(RespawnTank);
+            gameObject?.GetComponent<TankController>().OnPauseMenu.AddListener(GetComponent<PauseMenuManager>().ActivatePause);
         }
     }
 
