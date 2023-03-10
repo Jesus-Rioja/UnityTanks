@@ -7,6 +7,7 @@ public class TankController : MonoBehaviour
 {
     //Input system
     private TankControls InputMapping;
+    private PlayerInput Controls;
 
     // Character Attributes
     [Header("Character Attributes")]
@@ -34,6 +35,7 @@ public class TankController : MonoBehaviour
     private void Awake()
     {
         InputMapping = new TankControls();
+        Controls = GetComponent<PlayerInput>();
         WH = GetComponentInChildren<WeaponHandler>();
         CurrentMovementSpeed = BaseMovementSpeed;
         CurrentChassisRotationSpeed = BaseChassisRotationSpeed;
@@ -42,16 +44,16 @@ public class TankController : MonoBehaviour
     void Start()
     {
         //Binds every input action to a function
-        InputMapping.TankInput.Move.performed += OnMove;
+        /*InputMapping.TankInput.Move.performed += OnMove;
         InputMapping.TankInput.Move.canceled += OnMove;
 
-        InputMapping.TankInput.Rotate.performed += OnRotateTank;
-        InputMapping.TankInput.Rotate.canceled += OnRotateTank;
+        InputMapping.TankInput.Rotate.performed += OnRotate;
+        InputMapping.TankInput.Rotate.canceled += OnRotate;
 
-        InputMapping.TankInput.RotateCannon.performed += OnRotateTurret;
-        InputMapping.TankInput.RotateCannon.canceled += OnRotateTurret;
+        InputMapping.TankInput.RotateCannon.performed += OnRotateCannon;
+        InputMapping.TankInput.RotateCannon.canceled += OnRotateCannon;
 
-        InputMapping.TankInput.Attack.performed += OnAttack;
+        InputMapping.TankInput.Attack.performed += OnAttack;*/
     }
 
     private void OnEnable()
@@ -99,7 +101,7 @@ public class TankController : MonoBehaviour
         Movement = MovementInputMultiplier * CurrentMovementSpeed * Time.fixedDeltaTime;
     }
 
-    public void OnRotateTank(InputAction.CallbackContext context)
+    public void OnRotate(InputAction.CallbackContext context)
     {
         TankRotationInputMultiplier = context.ReadValue<float>();
         CalculateNewTankRotation();
@@ -111,7 +113,7 @@ public class TankController : MonoBehaviour
         TankRotation = TankRotationInputMultiplier * CurrentChassisRotationSpeed * Time.fixedDeltaTime;
     }
 
-    public void OnRotateTurret(InputAction.CallbackContext context)
+    public void OnRotateCannon(InputAction.CallbackContext context)
     {
         TurretRotation = context.ReadValue<float>() * TurretRotationSpeed * Time.fixedDeltaTime;
     }

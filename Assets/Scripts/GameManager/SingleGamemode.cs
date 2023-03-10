@@ -11,12 +11,20 @@ public class SingleGamemode : MonoBehaviour
     [SerializeField] Vector2 BottomLeftPosition;
     [SerializeField] LayerMask BuildingsLayer;
 
+    [Header("Gamemode overlay")]
+    [SerializeField] GameObject SinglePlayerOverlay;
+
     private int CactusDestroyed = 0;
     private int CactusSpawned = 0;
     private float TimeToInvokeNewCactus;
 
     public UnityEvent<int> OnCactusDestroyed;
     public UnityEvent GameFinished;
+
+    private void OnEnable()
+    {
+        SinglePlayerOverlay.SetActive(true);
+    }
 
     void Update()
     {

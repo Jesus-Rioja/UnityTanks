@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
+
+//Singleton
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -38,13 +41,29 @@ public class GameManager : MonoBehaviour
 
     private void SetUpGamemode() //Check the game mode -> Single or 2 players
     {
-        GameObject temp = Instantiate(Tank, Vector3.zero, Quaternion.identity);
-        temp.transform.position = TankSpawnPoints[0].position;
-        temp.SetActive(true);
-        temp.GetComponent<TargetTank>().PlayerIndex = 0;
-        CurrentPlayers.Add(temp);
+        int gameModeSelected = GamemodeSelector.Gamemode;
+
+        bool SingleGameModeSelected = (gameModeSelected == 1);
+
+        if (gameModeSelected < 1 || gameModeSelected > 2)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
+        for (int i = 0; i < gameModeSelected; i++) //Spawn the tanks
+        {
+            GameObject temp = Instantiate(Tank, Vector3.zero, Quaternion.identity);
+            temp.transform.position = TankSpawnPoints[i].position;
+            temp.SetActive(true);
+            temp.GetComponent<TargetTank>().PlayerIndex = i;
+            CurrentPlayers.Add(temp);
+        }
 
         BindEvents();
+
+        GetComponent<SingleGamemode>().enabled = SingleGameModeSelected ? true : false;
+        GetComponent<TwoPlayersGamemode>().enabled = !SingleGameModeSelected ? true : false;
+
     }
 
     private void BindEvents()

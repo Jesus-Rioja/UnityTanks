@@ -187,7 +187,7 @@ public partial class @TankControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""LeftStick"",
+                    ""name"": ""RightStick"",
                     ""id"": ""9ab558db-cdea-4f0a-84b1-ac8571b0c58f"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -200,7 +200,7 @@ public partial class @TankControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Negative"",
                     ""id"": ""88b13b62-167a-4ddf-ae1c-ee11542205b8"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -211,7 +211,7 @@ public partial class @TankControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Positive"",
                     ""id"": ""e6e3482f-64fe-422a-8ff8-0769efb19aaf"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -253,7 +253,7 @@ public partial class @TankControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""LeftStick"",
+                    ""name"": ""Shoulders"",
                     ""id"": ""e63da86f-c104-48b8-8e4f-dce9860b9cfb"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
