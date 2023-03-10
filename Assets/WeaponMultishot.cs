@@ -16,12 +16,12 @@ public class WeaponMultishot : WeaponBase
     {
         if (bShotAllowed)
         {
-            for(int i = 0; i < NumberOfProjectiles; i++)
+            for(int i = 0; i < NumberOfProjectiles; i++) //Spawn multiple projectiles
             {
                 GameObject projectile = ObjectPool.Instance.GetPooledObject(); //Finds one available bullet from the pool
                 if (projectile)
                 {
-                    //Generate random rotation to apply to bullets
+                    //Generate random rotation to apply to projectiles
                     float randomRotation = Random.Range(-60, 60);
                     
                     //Locate and rotate to current position
@@ -29,7 +29,7 @@ public class WeaponMultishot : WeaponBase
                     projectile.transform.rotation = ShootPoint.rotation * Quaternion.Euler(0, randomRotation, 0);
                     projectile.SetActive(true);
 
-                    projectile.GetComponent<Rigidbody>()?.AddForce(projectile.transform.forward * ForceOnShoot); //Apply force
+                    projectile.GetComponent<Rigidbody>()?.AddForce(projectile.transform.forward * ForceOnShoot); //Apply force at random rotation
                 }
             }
 

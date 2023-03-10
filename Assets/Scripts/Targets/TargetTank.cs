@@ -51,7 +51,7 @@ public class TargetTank : TargetWithLife
         if (other.CompareTag("Shield")) //Check effector
         {
             CurrentLife = 2;
-            TankShield.SetActive(true);
+            TankShield.SetActive(true); //Add shield visuals
             Destroy(other.gameObject);
             GameManager.Instance.GetComponent<EffectorsManager>().EnableTimerToSpawnNewEffector();
         }

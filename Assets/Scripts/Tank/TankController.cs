@@ -92,12 +92,12 @@ public class TankController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if(context.started) //Button pressed
         {
             IdleSound.Stop();
             MovementSound.Play();
         }
-        else if(context.canceled)
+        else if(context.canceled) //Button released
         {
             MovementSound.Stop();
             IdleSound.Play();
@@ -117,7 +117,6 @@ public class TankController : MonoBehaviour
     {
         TankRotationInputMultiplier = context.ReadValue<float>();
         CalculateNewTankRotation();
-        //TurretRotation = 0;
     }
 
     private void CalculateNewTankRotation()
@@ -155,17 +154,17 @@ public class TankController : MonoBehaviour
     {
         if(other.CompareTag("Turbo")) //Check effector
         {
-            ApplyTurbo();
+            ApplyTurbo(); //Velocity increment
 
         }
         else if(other.CompareTag("Ammo"))
         {
-            PickingAmmoSound.Play();
+            PickingAmmoSound.Play(); //Add 5 projectiles to current ammo
             WH.OnEffectorAddAmmo();
         }
         else if(other.CompareTag("Multishot"))
         {
-            WH.OnEffectorMultishotWeapon();
+            WH.OnEffectorMultishotWeapon(); //Makes weapon miltishoot for 8 secs
         }
         else
         {
@@ -173,7 +172,7 @@ public class TankController : MonoBehaviour
         }
 
         Destroy(other.gameObject);
-        GameManager.Instance.GetComponent<EffectorsManager>().EnableTimerToSpawnNewEffector();
+        GameManager.Instance.GetComponent<EffectorsManager>().EnableTimerToSpawnNewEffector(); //Event to spawn new effector
     }
 
     private void ApplyTurbo()

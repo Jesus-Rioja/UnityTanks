@@ -100,11 +100,11 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
-    public void OnEffectorMultishotWeapon() //Gives ammo when effector picked up
+    public void OnEffectorMultishotWeapon() //Gives multishoot for 8 secs
     {
         bWithModifier = true;
         WeaponModifierDuration = 8.0f;
-        CurrentWeapon = Weapons[1];
+        CurrentWeapon = Weapons[1]; //Change weapon to multishot one
     }
 
     #endregion
