@@ -68,6 +68,8 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
+    public int GetCurentAmmo() { return CurrentAmmo; }
+
     #region TriggerEffects
 
     public void OnEffectorAddAmmo() //Gives ammo when effector picked up

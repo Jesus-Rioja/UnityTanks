@@ -41,6 +41,8 @@ public class TankController : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.CurrentPlayers.Add(this.gameObject);
+
         //Binds every input action to a function
         InputMapping.TankInput.Move.performed += OnMove;
         InputMapping.TankInput.Move.canceled += OnMove;

@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class TargetCactus : TargetWithLife
 {
+    Animator CactusAnim;
+
+    private void Awake()
+    {
+        CactusAnim = GetComponentInChildren<Animator>();
+    }
+
     protected override void CheckStillAlive()
     {
         if (CurrentLife <= 0)
         {
             GameManager.Instance.GetComponent<SingleGamemode>().AddCactusDestroyed();
-            Destroy(gameObject);
+            CactusAnim.SetTrigger("Death");
         }
+    }
+
+    public void DestroyCactus()
+    {
+        Destroy(this.gameObject);
     }
 }
