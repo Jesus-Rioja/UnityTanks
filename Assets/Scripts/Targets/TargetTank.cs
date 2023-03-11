@@ -25,7 +25,6 @@ public class TargetTank : TargetWithLife
     public override void LoseLife()
     {
         base.LoseLife();
-
         if(CurrentLife <= 1)
         {
             TankShield.SetActive(false);
@@ -44,7 +43,7 @@ public class TargetTank : TargetWithLife
             bIsDead = true; 
             CC.enabled = false; //Disable character controller to allow GameManager set its transform position
 
-            OnTankDeath.Invoke(PlayerIndex); //Bind to GameManager to set its respawn position
+            OnTankDeath.Invoke(PlayerIndex); //Call to GameManager to set its respawn position
             FullRegenerateLife();
             StartCoroutine(EnableInvulnerabilityOnRespawn()); //Tank is 3 secs invulnerable after respawn
         }
