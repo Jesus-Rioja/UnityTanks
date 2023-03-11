@@ -7,5 +7,5 @@
 | TANK ROTATION     | A/D      | RIGHT STICK    |
 | TURRET ROTATION    | LFT/RGHT CLICK      | LEFT/RGTH SHOULDERS     |
 | SHOOT    | SPACE      | EAST BUTTON      |
-| PAUSE GAME    | ESP      | START      |
+| PAUSE GAME    | ESC      | START      |
 
