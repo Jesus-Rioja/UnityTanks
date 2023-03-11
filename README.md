@@ -5,7 +5,7 @@
 | :---         |     :---:      |          ---: |
 | MOVE FORWARD/BACKWARD   | W/S     | LEFT STICK    |
 | TANK ROTATION     | A/D      | RIGHT STICK    |
-| TURRET ROTATION    | LFT/RGHT CLICK      | LEFT/RGTH SHOULDERS     |
+| TURRET ROTATION    | LEFT/RIGHT CLICK      | LEFT/RIGTH SHOULDERS     |
 | SHOOT    | SPACE      | EAST BUTTON      |
 | PAUSE GAME    | ESC      | START      |
 
