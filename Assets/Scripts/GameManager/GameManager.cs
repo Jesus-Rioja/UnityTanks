@@ -47,8 +47,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < gameModeSelected; i++) //Spawn the tanks
         {
-            GameObject temp = Instantiate(Tank, Vector3.zero, Quaternion.identity);
-            temp.transform.position = TankSpawnPoints[i].position;
+            GameObject temp = Instantiate(Tank, TankSpawnPoints[i].position, Quaternion.identity);
             temp.SetActive(true);
             temp.GetComponent<TargetTank>().PlayerIndex = i;
             CurrentPlayers.Add(temp);
@@ -79,5 +78,10 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
+    }
+
+    public void SetTimeScale(float value)
+    {
+        Time.timeScale = value;
     }
 }

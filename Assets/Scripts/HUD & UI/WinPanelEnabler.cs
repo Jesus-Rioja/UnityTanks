@@ -11,12 +11,13 @@ public class WinPanelEnabler : MonoBehaviour
     {
         WinPanel.SetActive(false);
 
-        GameManager.Instance.GetComponent<SingleGamemode>().GameFinished.AddListener(EnableWinPanel);
+        GameManager.Instance.GetComponent<SingleGamemode>().GameFinished.AddListener(EnableWinPanel); //Panel activation when 20 cactus destroyed
 
     }
 
     private void EnableWinPanel()
     {
+        Time.timeScale = 0.0f;
         WinPanel.SetActive(true);
     }
 }

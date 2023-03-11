@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 2178012769904732818}
   - component: {fileID: 5169944392983896794}
   - component: {fileID: -8450679300744168227}
+  - component: {fileID: -8565935200069936798}
   m_Layer: 7
   m_Name: Tank
   m_TagString: Player
@@ -652,7 +653,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!136 &2178012769904732829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -664,9 +665,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.84975725
-  m_Height: 2.2800267
+  m_Height: 1.7762939
   m_Direction: 1
-  m_Center: {x: -0.0060810447, y: 0.6144626, z: 0.030580163}
+  m_Center: {x: -0.0060810447, y: 0.8663289, z: 0.030580163}
 --- !u!114 &2178012769904732818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,6 +864,24 @@ MonoBehaviour:
   m_DefaultActionMap: TankInput
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!143 &-8565935200069936798
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178012769904732819}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &2178012769904732821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,7 +1193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3223443168052452516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1212,7 +1231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3252476241340351843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1554,7 +1573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8287707120802862116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.777, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

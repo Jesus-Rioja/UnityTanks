@@ -6,10 +6,6 @@ using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
 {
-    //Input system
-    private TankControls InputMapping;
-    private PlayerInput Controls;
-
     // Character Attributes
     [Header("Character Attributes")]
     [SerializeField] private float BaseMovementSpeed = 6;
@@ -38,15 +34,17 @@ public class TankController : MonoBehaviour
     //Weapon manager
     private WeaponHandler WH;
 
+    //Character controller
+    private CharacterController CC;
+
     //Event to trigger pause menu
     [HideInInspector] public UnityEvent OnPauseMenu;
     bool bIsOnPause = false;
 
     private void Awake()
     {
-        InputMapping = new TankControls();
-        Controls = GetComponent<PlayerInput>();
         WH = GetComponentInChildren<WeaponHandler>();
+        CC = GetComponent<CharacterController>();
         CurrentMovementSpeed = BaseMovementSpeed;
         CurrentChassisRotationSpeed = BaseChassisRotationSpeed;
     }
@@ -56,19 +54,9 @@ public class TankController : MonoBehaviour
         IdleSound.Play();
     }
 
-    private void OnEnable()
-    {
-        InputMapping.Enable();
-    }
-
-    private void OnDisable()
-    {
-        InputMapping.Disable();
-    }
-
     void FixedUpdate()
     {
-        transform.Translate(0, 0, Movement);
+        CC.Move(Movement * transform.forward);
         transform.Rotate(0, TankRotation, 0);
 
         TankTurret.Rotate(0, TurretRotation, 0);
