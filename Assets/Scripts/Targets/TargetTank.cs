@@ -14,9 +14,12 @@ public class TargetTank : TargetWithLife
     [HideInInspector] public UnityEvent<int> OnTankDeath;
     [HideInInspector] public int PlayerIndex = 0;
 
+    private CharacterController CC;
+
     private void Awake()
     {
         TankShield.SetActive(false);
+        CC = GetComponent<CharacterController>();
     }
 
     public override void LoseLife()
@@ -31,14 +34,17 @@ public class TargetTank : TargetWithLife
 
     protected override void CheckStillAlive()
     {
-        if (CurrentLife <= 0)
+        if (CurrentLife <= 0 && !bIsDead)
         {
             if(!TankExplosionSound.isPlaying)
             {
                 TankExplosionSound.Play();
             }
 
-            OnTankDeath.Invoke(PlayerIndex);
+            bIsDead = true; 
+            CC.enabled = false; //Disable character controller to allow GameManager set its transform position
+
+            OnTankDeath.Invoke(PlayerIndex); //Bind to GameManager to set its respawn position
             FullRegenerateLife();
             StartCoroutine(EnableInvulnerabilityOnRespawn()); //Tank is 3 secs invulnerable after respawn
         }
@@ -62,8 +68,10 @@ public class TargetTank : TargetWithLife
     IEnumerator EnableInvulnerabilityOnRespawn()
     {
         bInvulnerable = true;
-        yield return new WaitForSeconds(3.0f);
+        CC.enabled = true;
+        yield return new WaitForSeconds(2.0f);
         bInvulnerable = false;
+        bIsDead = false;
     }
 
 }

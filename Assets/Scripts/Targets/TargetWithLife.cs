@@ -9,6 +9,7 @@ public class TargetWithLife : MonoBehaviour
     [SerializeField] float OnHitLifeLost = 1.0f;
 
     protected bool bInvulnerable = false;
+    protected bool bIsDead = false; //Bool to avoid multiple executions of CheckStillAlive() when target have dead -> This can cause to increment multiple target deaths instead of once
     protected float CurrentLife;
 
 
@@ -28,9 +29,10 @@ public class TargetWithLife : MonoBehaviour
 
     protected virtual void CheckStillAlive()
     {
-        if(CurrentLife <= 0)
+        if(CurrentLife <= 0 && !bIsDead)
         {
-            Destroy(gameObject);
+            Destroy(gameObject); 
+            bIsDead = true;
         }
     }
 
