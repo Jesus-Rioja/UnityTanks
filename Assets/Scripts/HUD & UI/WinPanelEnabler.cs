@@ -17,7 +17,6 @@ public class WinPanelEnabler : MonoBehaviour
 
     private void EnableWinPanel()
     {
-        Time.timeScale = 0.0f;
         WinPanel.SetActive(true);
     }
 }

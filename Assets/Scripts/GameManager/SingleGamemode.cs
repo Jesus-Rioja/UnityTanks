@@ -16,7 +16,7 @@ public class SingleGamemode : MonoBehaviour
 
     private int CactusDestroyed = 0;
     private int CactusSpawned = 0;
-    private float TimeToInvokeNewCactus;
+    private float TimeToInvokeNewCactus = 2.0f; //First cactus spawned at second 2
 
     public UnityEvent<int> OnCactusDestroyed;
     public UnityEvent GameFinished;
