@@ -1,5 +1,5 @@
-# XalocTanks
-  Small project for Xaloc Studios - To prove my unity & programming skills
+# Tanks
+  Small project - To prove my unity & programming skills
 
 | ACTION | KEYBOARD/MOUSE | CONTROLLER |
 | :---         |     :---:      |          ---: |
